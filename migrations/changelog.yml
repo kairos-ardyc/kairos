@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      - file: changeset/2024-09-29-create-meeting-table.yml
+      - file: changeset/2024-09-29-create-meeting-user-table.yml

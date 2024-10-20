@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-09-29-create-meeting-table
+      author: e.gulyakin
+      changes:
+        - createTable:
+            tableName: meeting
+            columns:
+              - column:
+                  name: uuid
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: owner
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end
+                  type: timestamp
+                  constraints:
+                    nullable: false

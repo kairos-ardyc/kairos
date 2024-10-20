@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-09-29-create-meeting-user-table
+      author: e.gulyakin
+      changes:
+        - createTable:
+            tableName: meeting_member
+            columns:
+              - column:
+                  name: meeting_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: meeting_member
+            columnNames: meeting_id, user_id

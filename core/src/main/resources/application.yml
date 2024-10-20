@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: kairos
+grpc:
+  client:
+    tenshi:
+      address: tenshi-grpc.ardyc.ru
+      negotiation-type: plaintext
