@@ -1,8 +1,14 @@
 spring:
   application:
     name: kairos
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 grpc:
   client:
     tenshi:
       address: tenshi-grpc.ardyc.ru
-      negotiation-type: plaintext
+      negotiation-type: tls
+      security:
+        trust-cert-collection: classpath:root_ca.crt

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-10-20-add-room-to-meeting-table
+      author: e.gulyakin
+      changes:
+        - addColumn:
+            tableName: meeting
+            columns:
+              - column:
+                  name: room
+                  type: varchar(50)
