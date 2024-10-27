@@ -13,10 +13,9 @@ interface MeetingMemberRepository : CrudRepository<MeetingMember, UUID> {
     fun getMeetingMembersByUserId(userId: UUID): List<MeetingMember>
     fun getMeetingMembersByMeetingId(meetingId: UUID): List<MeetingMember>
 
-    fun deleteByMeetingIdAndUserId(
-        meetingId: UUID,
-        userId: UUID,
-    )
+    @Modifying
+    @Query("DELETE FROM meeting_member WHERE meeting_id = :meetingId AND user_id = :userId")
+    fun deleteByMeetingIdAndUserId(meetingId: UUID, userId: UUID)
 
     @Modifying
     @Query("DELETE FROM meeting_member WHERE meeting_id = :meetingId")

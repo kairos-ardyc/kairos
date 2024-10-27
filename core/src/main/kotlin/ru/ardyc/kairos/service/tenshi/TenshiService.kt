@@ -1,4 +1,4 @@
-package ru.ardyc.kairos.service
+package ru.ardyc.kairos.service.tenshi
 
 import kotlinx.coroutines.runBlocking
 import net.devh.boot.grpc.client.inject.GrpcClient
