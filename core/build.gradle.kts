@@ -27,17 +27,27 @@ repositories {
 }
 
 dependencies {
+    // Integration
+    implementation("ru.ardyc.tenshi:grpc-api:2024.09.2")
+
+    // Spring
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("ru.ardyc.tenshi:grpc-api:2024.09.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("net.devh:grpc-client-spring-boot-starter:3.1.0.RELEASE")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-security")
+
+    // Database
+    runtimeOnly("org.postgresql:postgresql")
+
+    // Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+    // Test
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

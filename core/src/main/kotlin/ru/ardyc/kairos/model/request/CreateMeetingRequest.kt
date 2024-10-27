@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.Instant
 
 data class CreateMeetingRequest(
-    val title: String,
-    val room: String,
-    val description: String = "",
+    val title: String? = null,
+    val room: String? = null,
+    val description: String? = null,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-    val start: Instant = Instant.now(),
+    val start: Instant? = Instant.now(),
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-    val end: Instant = start.plusSeconds(600),
+    val end: Instant? = start?.plusSeconds(600),
 )

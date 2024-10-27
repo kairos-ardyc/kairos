@@ -1,5 +1,6 @@
 package ru.ardyc.kairos.entrypoint.security
 
+import ru.ardyc.kairos.entrypoint.security.SecurityContextHolder.securityContext
 import ru.ardyc.tenshi.user.UserInfoResponse
 
 object SecurityContextHolder {
@@ -13,3 +14,6 @@ class SecurityContext(
     var userInfo: UserInfoResponse,
     var userJwt: String
 )
+
+val user: UserInfoResponse
+    get() = securityContext.get()?.userInfo ?: throw IllegalArgumentException("User not authenticated")

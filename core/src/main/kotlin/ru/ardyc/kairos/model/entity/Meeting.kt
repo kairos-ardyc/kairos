@@ -9,15 +9,14 @@ import java.util.UUID
 @Table("meeting")
 data class Meeting(
     @Id
-    val uuid: UUID,
-    val owner: UUID,
-    val title: String,
-    val room: String,
-    val description: String,
-    val start: Instant,
-    val end: Instant,
+    var uuid: UUID,
+    var owner: UUID,
+    var title: String,
+    var room: String,
+    var description: String,
+    var start: Instant,
+    var end: Instant,
 ) : Persistable<UUID> {
     override fun getId() = uuid
-
     override fun isNew() = true
 }
