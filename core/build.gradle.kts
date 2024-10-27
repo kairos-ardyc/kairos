@@ -7,6 +7,8 @@ plugins {
     id("io.spring.dependency-management") version "1.1.6"
 }
 
+version = "main"
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
