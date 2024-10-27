@@ -12,3 +12,5 @@ grpc:
       negotiation-type: tls
       security:
         trust-cert-collection: ${SSL_CERT_PATH:classpath:root_ca.crt}
+meeting:
+  base-meeting-url: https://meet.jit.si/
