@@ -1,23 +1,19 @@
 package ru.ardyc.kairos.service.meeting
 
 import org.springframework.stereotype.Service
-import ru.ardyc.kairos.entrypoint.security.userContext
-import ru.ardyc.kairos.entrypoint.security.userId
 import ru.ardyc.kairos.mapper.toResponse
 import ru.ardyc.kairos.repository.MeetingMemberRepository
 import ru.ardyc.kairos.service.tenshi.TenshiService
 import java.util.UUID
 
 @Service
-class MeetingMemberService(
+class MeetingMemberApiService(
     private val meetingMemberRepository: MeetingMemberRepository,
     private val tenshiService: TenshiService
 ) {
-    fun isMember(meetingId: UUID) = userContext { user ->
-        meetingMemberRepository
-            .getMeetingMembersByUserId(user.userId)
-            .any { meetingUser -> meetingUser.meetingId == meetingId }
-    }
+    fun isMember(userId: UUID, meetingId: UUID) = meetingMemberRepository
+        .getMeetingMembersByUserId(userId)
+        .any { meetingUser -> meetingUser.meetingId == meetingId }
 
     fun getUserMeetings(userId: UUID) =
         meetingMemberRepository

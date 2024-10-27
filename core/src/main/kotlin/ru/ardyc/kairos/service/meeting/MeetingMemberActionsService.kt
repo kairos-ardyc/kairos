@@ -1,28 +1,22 @@
 package ru.ardyc.kairos.service.meeting
 
 import org.springframework.stereotype.Service
-import ru.ardyc.kairos.entrypoint.security.userContext
-import ru.ardyc.kairos.entrypoint.security.userId
 import java.util.UUID
 
 @Service
 class MeetingMemberActionsService(
-    private val meetingMemberService: MeetingMemberService,
-    private val meetingService: MeetingService
+    private val meetingMemberApiService: MeetingMemberApiService,
+    private val meetingApiService: MeetingApiService
 ) {
 
-    fun leaveMeeting(meetingId: UUID) = userContext { user ->
-        with(meetingService.getMeeting(meetingId)) {
-            if (owner == user.userId) {
-                meetingMemberService.removeAllUsers(meetingId)
-                meetingService.deleteById(meetingId)
-            }
-            meetingMemberService.removeUserFromMeeting(user.userId, meetingId)
+    fun addMemberToMeeting(userId: UUID, meetingId: UUID) =
+        meetingMemberApiService.addUserToMeeting(userId, meetingId)
+
+    fun removeMemberFromMeeting(userId: UUID, meetingId: UUID) = with(meetingApiService.getMeeting(meetingId)) {
+        if (owner == userId) {
+            meetingMemberApiService.removeAllUsers(meetingId)
+            meetingApiService.deleteById(owner, meetingId)
         }
-    }
-
-
-    fun joinMeeting(meetingId: UUID) = userContext { user ->
-        meetingMemberService.addUserToMeeting(user.userId, meetingId)
+        meetingMemberApiService.removeUserFromMeeting(userId, meetingId)
     }
 }

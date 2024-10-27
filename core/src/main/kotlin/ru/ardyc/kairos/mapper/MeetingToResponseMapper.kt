@@ -20,7 +20,8 @@ fun Meeting.toResponse(users: List<MeetingMemberResponse>) = MeetingResponse(
 
 
 fun MeetingMember.toResponse(info: UserInfoResponse) = MeetingMemberResponse(
-    id = UUID.fromString(info.uuid),
+    uuid = UUID.fromString(info.uuid),
     firstName = info.firstName,
     lastName = info.lastName,
+    login = info.login
 )
