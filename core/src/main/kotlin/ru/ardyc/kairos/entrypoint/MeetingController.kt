@@ -23,10 +23,10 @@ class MeetingController(
     private val meetingMemberService: MeetingMemberService
 ) {
 
-    @GetMapping("/")
+    @GetMapping
     fun getMeetings() = meetingService.getMeetings()
 
-    @PostMapping("/")
+    @PostMapping
     fun createMeeting(@RequestBody request: CreateMeetingRequest) = meetingService.createMeeting(request)
 
     @PutMapping("/{meetingId}")
