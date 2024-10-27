@@ -11,4 +11,4 @@ grpc:
       address: tenshi-grpc.ardyc.ru
       negotiation-type: tls
       security:
-        trust-cert-collection: classpath:root_ca.crt
+        trust-cert-collection: ${SSL_CERT_PATH:classpath:root_ca.crt}
