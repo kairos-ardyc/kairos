@@ -1,0 +1,19 @@
+{
+  "name": "NotificationAvro",
+  "namespace": "ru.ardyc.hoshi.avro",
+  "type": "record",
+  "fields": [
+    {
+      "name": "clientId",
+      "type": "string"
+    },
+    {
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "name": "message",
+      "type": "string"
+    }
+  ]
+}
