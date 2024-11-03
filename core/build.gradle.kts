@@ -1,3 +1,4 @@
+import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
 import java.net.URI
 
 plugins {
@@ -5,6 +6,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.6"
+    id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
 }
 
 version = "main"
@@ -26,6 +28,7 @@ repositories {
     maven {
         url = URI("https://gitlab.com/api/v4/projects/61901133/packages/maven")
     }
+    maven("https://packages.confluent.io/maven/")
 }
 
 dependencies {
@@ -52,6 +55,14 @@ dependencies {
     // Test
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // Kafka
+    implementation("org.apache.avro:avro:1.12.0")
+    implementation("io.confluent:kafka-avro-serializer:7.7.1")
+    implementation("org.springframework.kafka:spring-kafka:3.2.4")
+
+    // Jobrunr
+    implementation("org.jobrunr:jobrunr-spring-boot-3-starter:7.3.1")
 }
 
 kotlin {
@@ -62,4 +73,25 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir("$buildDir/generated/avro/main/java")
+        }
+    }
+}
+
+
+
+tasks {
+    named("build") {
+        dependsOn("generateAvroJava")
+    }
+
+    named<GenerateAvroJavaTask>("generateAvroJava") {
+        source("src/main/resources/avro")
+        setOutputDir(File("$buildDir/generated/avro/main/java"))
+    }
 }

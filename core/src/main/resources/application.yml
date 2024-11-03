@@ -14,3 +14,12 @@ grpc:
         trust-cert-collection: ${SSL_CERT_PATH:classpath:root_ca.crt}
 meeting:
   base-meeting-url: https://meet.jit.si/
+kafka:
+  bootstrap-servers: ${KAFKA_SERVER}
+  schema-registry-url: ${SCHEMA_REGISTRY_URL}
+org:
+  jobrunr:
+    dashboard:
+      enabled: true
+    background-job-server:
+      enabled: true
