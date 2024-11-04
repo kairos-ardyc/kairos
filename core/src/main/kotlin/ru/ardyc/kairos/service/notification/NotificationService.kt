@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service
 import ru.ardyc.kairos.repository.MeetingMemberRepository
 import ru.ardyc.kairos.repository.MeetingRepository
 import ru.ardyc.kairos.service.hoshi.HoshiNotificationSender
-import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneId
 
 @Service
 class NotificationService(
@@ -14,7 +15,10 @@ class NotificationService(
 ) {
 
     fun sendNotifications() {
-        meetingRepository.findAllByStartBetween(Instant.now(), Instant.now().plusSeconds(300))
+        meetingRepository.findAllByStartBetween(
+            OffsetDateTime.now(ZoneId.of("Europe/Moscow")),
+            OffsetDateTime.now(ZoneId.of("Europe/Moscow")).plusMinutes(5)
+        )
             .forEach { meeting ->
                 meetingUserRepository.getMeetingMembersByMeetingId(meeting.uuid)
                     .forEach { it ->
