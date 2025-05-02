@@ -1,5 +1,5 @@
 group = "ru.ardyc"
-version = "2024.11.2"
+version = "2025.05.1"
 
 subprojects {
     group = rootProject.group
