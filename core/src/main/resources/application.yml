@@ -13,7 +13,7 @@ grpc:
       security:
         trust-cert-collection: ${SSL_CERT_PATH:classpath:root_ca.crt}
 meeting:
-  base-meeting-url: https://meet.jit.si/
+  base-meeting-url: https://nirvana.ardyc.ru/?roomId=
 kafka:
   bootstrap-servers: ${KAFKA_SERVER}
   schema-registry-url: ${SCHEMA_REGISTRY_URL}
